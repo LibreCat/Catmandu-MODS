@@ -35,6 +35,9 @@ sub generator {
   };
 }
 
+1;
+__END__
+
 =head1 NAME
 
 Catmandu::Importer::MODS - Catmandu Importer for importing mods records
@@ -94,11 +97,9 @@ MODS::Element::Mods at a time.
 
 =back
 
-=head1 AUTHORS
+=head1 AUTHOR
 
-=over 4
-
-=item * Nicolas Franck <Nicolas . Franck at UGent . be>
+Nicolas Franck E<lt>Nicolas . Franck at UGent . beE<gt>
 
 =back
 
@@ -108,6 +109,3 @@ This library is free software and may be distributed under the same terms
 as perl itself. See L<http://dev.perl.org/licenses/>.
 
 =cut
-
-
-1;
