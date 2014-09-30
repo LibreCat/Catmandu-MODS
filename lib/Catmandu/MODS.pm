@@ -37,10 +37,14 @@ Copyright 2013- Nicolas Franck
 
 =head1 LICENSE
 
-This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
+This library is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
 
 =head1 SEE ALSO
 
 L<MODS::Record>, L<Catmandu::XML>
+
+MODS is specified and described at the Library of Congress:
+L<http://www.loc.gov/standards/mods/>
 
 =cut
