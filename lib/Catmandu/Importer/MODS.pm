@@ -1,39 +1,44 @@
 package Catmandu::Importer::MODS;
+
 our $VERSION = "0.2";
+
 use Catmandu::Sane;
-use Catmandu::Util qw(:is :array :check);
 use MODS::Record;
 use Moo;
 
 with 'Catmandu::Importer';
 
 has type => (
-  is => 'ro',
-  isa => sub {
-    my $t = $_[0];
-    is_string($t) && array_includes([qw(xml json)],$t) || die("type must be 'xml' or 'json'");
-  },
-  default => sub { 'xml'; },
-  lazy => 1
+    is => 'ro',
+    isa => sub {
+        die "type must be 'xml' or 'json'" unless grep { $_[0] eq $_ } qw(xml json);
+    },
+    lazy => 1,
+    builder => sub {
+        ($_[0]->file and $_[0]->file =~ /\.json$/) ? 'json' : 'xml';
+    }
 );
 
 sub generator {
-  my($self) = @_;
-  sub {  
-    state $i = 0;
-    #result: MODS::Record::Mods or MODS::Record::ModsCollection
-    state $mods = do {
-      #MODS::Record->from_json expects binary input (decode_json is applied)
-#      if($self->type eq "json"){
-#        $self->fh->binmode(":raw");
-#      }
-      my $m = $self->type eq "xml" ? MODS::Record->from_xml($self->fh) : MODS::Record->from_json($self->fh);
-      my $res = ref($m) eq "MODS::Element::Mods" ? [$m] : $m->mods;
-      $res;
+    my ($self) = @_;
+    sub {    
+        state $i = 0;
+        #result: MODS::Record::Mods or MODS::Record::ModsCollection
+        state $mods = do {
+            #MODS::Record->from_json expects binary input (decode_json is applied)
+#            if($self->type eq "json"){
+#                $self->fh->binmode(":raw");
+#            }
+            my $m = $self->type eq "xml" ? MODS::Record->from_xml($self->fh) : MODS::Record->from_json($self->fh);
+            my $res = ref($m) eq "MODS::Element::Mods" ? [$m] : $m->mods;
+            $res;
+        };
+        return $i < scalar(@$mods) ? $mods->[$i++] : undef;
     };
-    return $i < scalar(@$mods) ? $mods->[$i++] : undef;
-  };
 }
+
+1;
+__END__
 
 =head1 NAME
 
@@ -43,71 +48,37 @@ Catmandu::Importer::MODS - Catmandu Importer for importing mods records
 
   use Catmandu::Importer::MODS;
   
-  my $importer = Catmandu::Importer::MODS->new(file => "modsCollection.xml",type => "xml");  
+  my $importer = Catmandu::Importer::MODS->new(file => "modsCollection.xml");  
   
   my $numModsElements = $importer->each(sub{
-    #$modsElement is a MODS::Element::Mods object
-    my $modsElement = shift;    
+      my $modsElement = shift; # a MODS::Element::Mods object
   });
 
 =head1 DESCRIPTION
 
-MODS can be expressed in either XML or JSON. XML is the more common way to express.
-This module reads from a file, and iterates over the elements 'mods'. In case
-of a simple mods document, only one element is found. In case of a 'modsCollection',
-several mods elements can be found.
+This L<Catmandu::Importer> reads MODS records to be processed with L<Catmandu>.
+In case of a simple "mods" document, one  L<MODS::Element::Mods> item is
+imported. In case of a "modsCollection", several items are imported.
 
-These files SHOULD be expressed in UTF-8.
+See L<Catmandu::Importer>, L<Catmandu::Iterable>, L<Catmandu::Logger> and
+L<Catmandu::Fixable> for methods and options derived from these modules.
 
-=head1 METHODS
+Make sure your files are expressed in UTF-8.
 
-=head2 Catmandu::Importer::MODS->new(file => "mods.xml",type => "xml")
+=head1 CONFIGURATION
 
-Creates a new importer. 'file' can anything that can be transformed into
-an IO::Handle by Catmandu::Util::io. See http://search.cpan.org/~nics/Catmandu-0.5004/lib/Catmandu/Util.pm for more information.
+=over
 
-'type' can only be 'json' or 'xml'.
+=item type
 
-=head2 each(sub{ .. })
+Set to C<xml> by default, as MODS is usually expressed in XML. Use C<json> (or
+provide a file with extension C<.json>) for a custom JSON format, introduced in
+module L<MODS::Record>.
 
-The importer transforms the input 'file' into an array of L<MODS::Element::Mods>. 
-This method iterates over that list, and supplies the callback with one
-MODS::Element::Mods at a time.
+=back
 
 =head1 SEE ALSO
 
-=over 4
-
-=item * L<MODS::Record>
-
-=item * Library Of Congress MODS pages (http://www.loc.gov/standards/mods/)
-
-=back
-
-=head1 DESIGN NOTES
-
-=over 4
-
-=item * This module is part of the LibreCat/Catmandu project http://librecat.org
-
-=item * Make sure your files are expressed in UTF-8.
-
-=back
-
-=head1 AUTHORS
-
-=over 4
-
-=item * Nicolas Franck <Nicolas . Franck at UGent . be>
-
-=back
-
-=head1 LICENSE
-
-This library is free software and may be distributed under the same terms
-as perl itself. See L<http://dev.perl.org/licenses/>.
+See L<Catmandu::MODS> for more information about MODS and Catmandu.
 
 =cut
-
-
-1;

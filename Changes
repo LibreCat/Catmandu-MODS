@@ -1,0 +1,9 @@
+# Change file for Catmandu::MODS
+
+{{$NEXT}}
+    - renamed to Catmandu::MODS
+    - migrated to Dist::Zilla
+
+0.1  2013-08-06
+    - First release
+
