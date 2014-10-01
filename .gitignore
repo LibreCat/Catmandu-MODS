@@ -11,3 +11,4 @@ META.*
 MYMETA.*
 *.bak
 _build_params
+Catmandu-MODS-*
