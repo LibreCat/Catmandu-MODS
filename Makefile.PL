@@ -3,8 +3,8 @@ require 5.010000;
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
-  'NAME' => 'Catmandu::Importer::MODS',
-  'VERSION_FROM' => 'lib/Catmandu/Importer/MODS.pm',
+  'NAME' => 'Catmandu::MODS',
+  'VERSION_FROM' => 'lib/Catmandu/MODS.pm',
   'PREREQ_PM' => {
                    'Carp' => 0,
                    'Catmandu' => '0.5004',

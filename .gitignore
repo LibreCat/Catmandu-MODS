@@ -10,3 +10,4 @@ Makefile.PL
 META.*
 MYMETA.*
 *.bak
+_build_params
