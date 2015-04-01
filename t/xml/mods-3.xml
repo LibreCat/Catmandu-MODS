@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<modsCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/mods/v3" version="3.4" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+<modsCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
 
   <mods ID="a">
     <titleInfo>
@@ -17,7 +17,7 @@
       </place>
       <dateIssued>19 mei 1835</dateIssued>
       <dateIssued encoding="marc">1835^^^^</dateIssued>
-      <issuance/>
+      <issuance>continuing</issuance>
       <frequency/>
     </originInfo>
     <physicalDescription>
@@ -36,7 +36,7 @@
     </subject>
     <location>
       <physicalLocation>CA20</physicalLocation>
-      <shelfLocation>BIB.ARCH.0090.0001</shelfLocation>
+      <shelfLocator>BIB.ARCH.0090.0001</shelfLocator>
     </location>
     <recordInfo>
       <recordContentSource authority="marcorg">UGent</recordContentSource>
@@ -63,7 +63,7 @@
       </place>
       <dateIssued>19 mei 1835</dateIssued>
       <dateIssued encoding="marc">1835^^^^</dateIssued>
-      <issuance/>
+      <issuance>multipart monograph</issuance>
       <frequency/>
     </originInfo>
     <physicalDescription>
@@ -82,7 +82,7 @@
     </subject>
     <location>
       <physicalLocation>CA20</physicalLocation>
-      <shelfLocation>BIB.ARCH.0090.0001</shelfLocation>
+      <shelfLocator>BIB.ARCH.0090.0001</shelfLocator>
     </location>
     <recordInfo>
       <recordContentSource authority="marcorg">UGent</recordContentSource>

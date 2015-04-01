@@ -9,14 +9,15 @@
     <namePart type="date">1786-1864</namePart>
   </name>
   <typeOfResource/>
-  <originInfo script="Latn">
+  <originInfo>
     <place>
-      <placeTerm type="code" authority="marccountry">xx^</placeTerm>
+      <placeTerm type="code" authority="marccountry">dcu</placeTerm>
+      <placeTerm type="text">Washington, DC</placeTerm>
     </place>
-    <dateIssued>19 mei 1835</dateIssued>
-    <dateIssued encoding="marc">1835^^^^</dateIssued>
-    <issuance/>
-    <frequency/>
+    <publisher>Library of Congress, Cataloging Distribution Service, in collaboration with Follett Software Company</publisher>
+    <dateIssued>2003</dateIssued>
+    <edition>7th ed.</edition>
+    <issuance>monographic</issuance>
   </originInfo>
   <physicalDescription>
     <form authority="gmd">graphic material</form>
@@ -34,7 +35,7 @@
   </subject>
   <location>
     <physicalLocation>CA20</physicalLocation>
-    <shelfLocation>BIB.ARCH.0090.0001</shelfLocation>
+    <shelfLocator>BIB.ARCH.0090.0001</shelfLocator>
   </location>
   <recordInfo>
     <recordContentSource authority="marcorg">UGent</recordContentSource>
