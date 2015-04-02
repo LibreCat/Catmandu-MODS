@@ -1,6 +1,6 @@
 package Catmandu::Importer::MODS;
 
-our $VERSION = "0.2";
+our $VERSION = "0.3";
 
 use Catmandu::Sane;
 use MODS::Record;
@@ -21,7 +21,7 @@ has type => (
 
 sub generator {
     my ($self) = @_;
-    sub {    
+    sub {
         state $i = 0;
         #result: MODS::Record::Mods or MODS::Record::ModsCollection
         state $mods = do {
@@ -47,9 +47,9 @@ Catmandu::Importer::MODS - Catmandu Importer for importing mods records
 =head1 SYNOPSIS
 
   use Catmandu::Importer::MODS;
-  
-  my $importer = Catmandu::Importer::MODS->new(file => "modsCollection.xml");  
-  
+
+  my $importer = Catmandu::Importer::MODS->new(file => "modsCollection.xml");
+
   my $numModsElements = $importer->each(sub{
       my $modsElement = shift; # a MODS::Element::Mods object
   });

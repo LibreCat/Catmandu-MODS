@@ -2,7 +2,7 @@ package Catmandu::MODS;
 use strict;
 use warnings;
 
-our $VERSION = "0.2";
+our $VERSION = "0.3";
 
 1;
 __END__
