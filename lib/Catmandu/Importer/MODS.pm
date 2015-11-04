@@ -1,6 +1,6 @@
 package Catmandu::Importer::MODS;
 
-our $VERSION = "0.3";
+our $VERSION = "0.31";
 
 use Catmandu::Sane;
 use MODS::Record;
@@ -25,10 +25,18 @@ sub generator {
         state $i = 0;
         #result: MODS::Record::Mods or MODS::Record::ModsCollection
         state $mods = do {
-            #MODS::Record->from_json expects binary input (decode_json is applied)
-#            if($self->type eq "json"){
-#                $self->fh->binmode(":raw");
-#            }
+            #starting from version 0.11 of MODS::Record utf8 is enabled by issuing JSON->new->utf8(1)
+            if($MODS::Record::VERSION >= 0.11){
+                if($self->type eq "json"){
+                    $self->fh->binmode(":raw");
+                }
+            }
+            #before version 0.11 of MODS::Record, decoding needed to be done yourself
+            else{
+                if($self->type eq "json"){
+                    $self->fh->binmode(':utf8');
+                }
+            }
             my $m = $self->type eq "xml" ? MODS::Record->from_xml($self->fh) : MODS::Record->from_json($self->fh);
             my $res = ref($m) eq "MODS::Element::Mods" ? [$m] : $m->mods;
             $res;

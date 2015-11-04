@@ -1,4 +1,4 @@
-#!perl 
+#!perl
 use strict;
 use warnings;
 use Test::More;
@@ -24,7 +24,7 @@ for my $file(@files){
   };
   ok(defined($importer) && ref($importer) eq "Catmandu::Importer::MODS");
   my $count = $importer->count;
-  ok($count > 0); 
+  ok($count > 0);
 }
 
 done_testing 3 + scalar(@files)*2;

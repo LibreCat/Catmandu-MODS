@@ -1,4 +1,4 @@
-#!perl 
+#!perl
 use strict;
 use warnings;
 use Test::More;
@@ -23,7 +23,7 @@ for my $file(@files){
     $importer = Catmandu::Importer::MODS->new(file => $file,type => 'json');
   };
   ok(defined($importer) && ref($importer) eq "Catmandu::Importer::MODS");
-  ok($importer->count > 0); 
+  ok($importer->count > 0);
 }
 
 done_testing 3 + scalar(@files)*2;

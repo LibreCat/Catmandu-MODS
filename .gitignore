@@ -12,3 +12,5 @@ MYMETA.*
 *.bak
 _build_params
 Catmandu-MODS-*
+test
+local/
